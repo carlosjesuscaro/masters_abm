@@ -4,6 +4,10 @@ globals [
   prct; Percentage of the intial population who are bad
 ]
 
+turtles-own [
+  crrpt; Individual measurement of corruption per turtle
+]
+
 to setup
   initial
 end
@@ -12,7 +16,25 @@ to go
   ask turtles [
    set heading random 360
    forward 1
+
+   ; Checking if interacting with a corrupt person
+   if any? other turtles-here with [color = red]
+    [
+      set crrpt (crrpt + 0.075 * Corruption)
+      if crrpt > 1 [set crrpt 1]
+      ;set color red
+    ]
+   ; Checking if interacting with a good person
+   if any? other turtles-here with [color = green]
+    [
+      set crrpt (crrpt - 0.1ss)
+      if crrpt < 0 [set crrpt 0]
+    ]
+  ; Checking whether the colors should be changed
+  ask turtles with [crrpt >= 0.8] [set color red]
+  ask turtles with [crrpt < 0.8] [set color green]
   ]
+  tick
 end
 
 to initial
@@ -35,7 +57,7 @@ to pop_good
     set shape "person";
     set color green;
     setxy random-xcor random-ycor;
-    move
+    set crrpt 0;
   ]
 end
 
@@ -46,13 +68,8 @@ to pop_bad
    set shape "person";
    set color red;
    setxy random-xcor random-ycor;
+   set crrpt 0.8;
   ]
-end
-
-; People moving
-to move
-  rt random-float 360
-  forward 1
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
@@ -100,10 +117,10 @@ NIL
 1
 
 BUTTON
-127
-73
-190
-106
+115
+77
+178
+110
 Go
 go
 T
@@ -121,11 +138,11 @@ SLIDER
 126
 196
 159
-corruption
-corruption
+Corruption
+Corruption
 0
-10
-2.0
+5
+0.0
 1
 1
 NIL
@@ -158,7 +175,7 @@ INPUTBOX
 197
 380
 Percentage
-10.0
+50.0
 1
 0
 Number
