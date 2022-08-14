@@ -20,20 +20,22 @@ to go
    ; Checking if interacting with a corrupt person
    if any? other turtles-here with [color = red]
     [
-      set crrpt (crrpt + 0.075 * Corruption)
+      set crrpt (crrpt + 0.1 * Corruption)
       if crrpt > 1 [set crrpt 1]
       ;set color red
     ]
    ; Checking if interacting with a good person
    if any? other turtles-here with [color = green]
     [
-      set crrpt (crrpt - 0.1ss)
+      set crrpt (crrpt - 0.1)
       if crrpt < 0 [set crrpt 0]
     ]
   ; Checking whether the colors should be changed
   ask turtles with [crrpt >= 0.8] [set color red]
   ask turtles with [crrpt < 0.8] [set color green]
+
   ]
+
   tick
 end
 
@@ -71,6 +73,10 @@ to pop_bad
    set crrpt 0.8;
   ]
 end
+
+; References
+; https://ccl.northwestern.edu/netlogo/bind/primitive/turtles-here.html
+; HIV mnodel from the Library
 @#$#@#$#@
 GRAPHICS-WINDOW
 276
@@ -142,17 +148,17 @@ Corruption
 Corruption
 0
 5
-0.0
+4.0
 1
 1
 NIL
 HORIZONTAL
 
 INPUTBOX
-45
-212
-194
-272
+24
+208
+173
+268
 Population
 100.0
 1
@@ -170,21 +176,21 @@ Initial conditions
 1
 
 INPUTBOX
-48
-320
-197
-380
+28
+293
+177
+353
 Percentage
-50.0
+30.0
 1
 0
 Number
 
 MONITOR
-854
-145
-956
-190
+739
+119
+841
+164
 Honest people
 count turtles with [color = green]
 17
@@ -192,15 +198,35 @@ count turtles with [color = green]
 11
 
 MONITOR
-869
-250
-977
-295
+856
+119
+964
+164
 Corrupt people
 count turtles with [color = red]
 17
 1
 11
+
+TEXTBOX
+33
+552
+183
+786
+The purpose of this model is to show the influence of Gov corruption over the population. \n\nThe slider called 'Corruption' is a way the quantify the level of corruption from the Government officials
+14
+0.0
+0
+
+TEXTBOX
+31
+358
+181
+386
+Percentage of corruption in the population
+11
+0.0
+1
 
 @#$#@#$#@
 ## WHAT IS IT?
