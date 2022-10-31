@@ -76,7 +76,7 @@ end
 
 ; References
 ; https://ccl.northwestern.edu/netlogo/bind/primitive/turtles-here.html
-; HIV mnodel from the Library
+; HIV mndel from Netlogo's library
 @#$#@#$#@
 GRAPHICS-WINDOW
 276
@@ -148,7 +148,7 @@ Corruption
 Corruption
 0
 5
-4.0
+0.0
 1
 1
 NIL
@@ -213,7 +213,7 @@ TEXTBOX
 552
 183
 786
-The purpose of this model is to show the influence of Gov corruption over the population. \n\nThe slider called 'Corruption' is a way the quantify the level of corruption from the Government officials
+The purpose of this model is to show the influence of Gov and social corruption over the population. \n\nThe slider called 'Corruption' is a way the quantify the level of corruption from the Government and society
 14
 0.0
 0
